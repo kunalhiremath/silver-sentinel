@@ -9,6 +9,12 @@ from telegram import Bot
 TOKEN = os.getenv('TELE_TOK')
 CHAT_ID = os.getenv('TELE_ID')
 
+# Validate required environment variables
+if not TOKEN:
+    raise ValueError("❌ TELE_TOK environment variable is not set!")
+if not CHAT_ID:
+    raise ValueError("❌ TELE_ID environment variable is not set!")
+
 INVESTED_AMOUNT = 50000  
 TARGET_AMOUNT = 100000    
 ENTRY_PRICE_MCX = 265000  
@@ -89,4 +95,5 @@ async def run_sentinel():
         print(f"Error: {e}")
 
 if __name__ == '__main__':
+
     asyncio.run(run_sentinel())

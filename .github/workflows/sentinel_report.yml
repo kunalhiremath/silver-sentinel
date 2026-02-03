@@ -3,7 +3,6 @@ on:
   workflow_dispatch:
   schedule:
     - cron: '30 4 * * *'
-
 jobs:
   run-sentinel:
     runs-on: ubuntu-latest
@@ -15,8 +14,6 @@ jobs:
       - run: pip install yfinance python-telegram-bot pandas
       - name: Run Script
         env:
-          # This is the bridge. 
-          # It takes your secret 'TELE_TOK' and gives it to the script as 'TELEGRAM_TOKEN'
-          TELEGRAM_TOKEN: ${{ secrets.TELE_TOK }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELE_ID }}
+          TELE_TOK: ${{ secrets.TELE_TOK }}
+          TELE_ID: ${{ secrets.TELE_ID }}
         run: python silver_sentinel_v2.py
